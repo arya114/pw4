@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Okt 2022 pada 13.38
+-- Waktu pembuatan: 01 Nov 2022 pada 15.38
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 8.0.12
 
@@ -41,8 +41,30 @@ CREATE TABLE `hijab` (
 
 INSERT INTO `hijab` (`id`, `nama`, `harga`, `produk`, `date`) VALUES
 (3, 'Rabbani', 25000, '', ''),
-(5, 'Nafisa', 30000, '', ''),
-(15, 'pash', 50000, 'pash.jpg', '2022-10-27');
+(15, 'jilbab jersey', 50000, 'pash.jpg', '2022-10-27'),
+(16, 'Pasmina Inner', 35000, 'Pasmina Inner.jpg', '2022-10-30'),
+(17, 'jilbab sport', 30000, 'jilbab sport.jpg', '2022-10-30'),
+(18, 'jilbab Rabbani', 50000, 'jilbab Rabbani.jpg', '2022-10-30');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `username`, `password`) VALUES
+(2, 'alraqkiananda@gmail.com', 'arya114', '$2y$10$tmxH7VC5WqTqMg7IoVOYpejZE/5Q5W4gQRWpQ8xvZnLrAzmt8IL1C');
 
 --
 -- Indexes for dumped tables
@@ -55,6 +77,12 @@ ALTER TABLE `hijab`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -62,7 +90,13 @@ ALTER TABLE `hijab`
 -- AUTO_INCREMENT untuk tabel `hijab`
 --
 ALTER TABLE `hijab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT untuk tabel `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
