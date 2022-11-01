@@ -1,7 +1,29 @@
 <?php
+session_start();
 include_once("config.php");
  
+
+
+if(!isset($_SESSION['login'])){
+    header("Location: login.php");
+    exit;
+}
+
+if ( isset($_GET['search'])) {
+    $keyword = $_GET['keyword'];
+
+    $result = mysqli_query($mysqli, "SELECT * from hijab WHERE nama LIKE '%$keyword%' OR harga LIKE '%$keyword%'");
+} else{
+    $result = mysqli_query($mysqli, "SELECT * from hijab");
+}
+
+$hijab = [];
+
+while ($row = mysqli_fetch_assoc($result)){
+    $hijab[] = $row;
+}
 $result = mysqli_query($mysqli, "SELECT * FROM hijab ORDER BY id DESC");
+
 ?>
  
  <!DOCTYPE html>
@@ -21,6 +43,12 @@ $result = mysqli_query($mysqli, "SELECT * FROM hijab ORDER BY id DESC");
         <div class="list-table">
             <h3>LIST PRODUK HIJUB SHOP</h3>
             <a href="form.php" class="tambah">Tambah Produk</a>
+            <div class="searching">
+            <form action="" method="get">
+                <input type="text" name="keyword" placeholder="Searching for.." class="search">
+                <input type="submit" name="search" value="cari" class="cari">
+            </form>
+        </div>
             <table>
                 <tr class="thead">
                     <th>No</th>
@@ -65,6 +93,9 @@ $result = mysqli_query($mysqli, "SELECT * FROM hijab ORDER BY id DESC");
                 ?>
 
             </table>
+            <li class="nav-item">
+                    <a class="nav-link" href="Logout.php">Logout</a>
+                </li>
         </div>
         
     </body>
