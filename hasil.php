@@ -1,6 +1,11 @@
 <?php
 session_start();
-include_once("config.php");
+include 'config.php';
+
+if(!isset($_SESSION['login'])){
+    header("Location: login.php");
+    exit;
+}
 
  
 if ( isset($_GET['search'])) {
