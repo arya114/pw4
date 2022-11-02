@@ -1,14 +1,8 @@
 <?php
 session_start();
 include_once("config.php");
+
  
-
-
-if(!isset($_SESSION['login'])){
-    header("Location: login.php");
-    exit;
-}
-
 if ( isset($_GET['search'])) {
     $keyword = $_GET['keyword'];
 
@@ -16,14 +10,6 @@ if ( isset($_GET['search'])) {
 } else{
     $result = mysqli_query($mysqli, "SELECT * from hijab");
 }
-
-$hijab = [];
-
-while ($row = mysqli_fetch_assoc($result)){
-    $hijab[] = $row;
-}
-$result = mysqli_query($mysqli, "SELECT * FROM hijab ORDER BY id DESC");
-
 ?>
  
  <!DOCTYPE html>

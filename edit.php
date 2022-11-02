@@ -10,8 +10,16 @@
     if(isset($_POST['submit'])){
         $nama = $_POST['nama'];
         $harga = $_POST['harga'];
+        $date = $_POST['date'];
+        $produk = $_FILES['produk']['name'];
+        $x = explode('.',$produk);
+        $ekstensi = strtolower(end($x));
 
-        $update = mysqli_query($mysqli, "UPDATE hijab SET nama='$nama', harga='$harga' WHERE id='$id'");
+        $produk_baru = "$nama.$ekstensi";
+        $tmp = $_FILES['produk']['tmp_name'];
+
+
+        $update = mysqli_query($mysqli, "UPDATE hijab SET nama='$nama', harga='$harga', date='$date', produk='$produk' WHERE id='$id'");
 
         if($update){
             header("Location:hasil.php");
@@ -35,13 +43,19 @@
     
     <div class="form-class">
         <h3>Edit Produk</h3>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             
             <label for="">Nama</label><br>
             <input type="text" name="nama" class="form-text" value=<?=$row['nama'];?>><br>
             
             <label for="">Harga</label><br>
             <input type="text" name="harga" class="form-text" value=<?=$row['harga'];?>><br>
+
+            <label for="">Date</label><br>
+            <input type="date" name="date" class="form-text" value=<?=$row['date'];?>><br>
+
+            <label for="">Produk</label><br>
+            <input type="file" name="produk" class="form-text" value=<?=$row['produk'];?>><br>
             
             <input type="submit" name="submit" value="Kirim" class="btn-submit">
         
